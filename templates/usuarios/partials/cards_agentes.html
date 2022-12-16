@@ -1,0 +1,22 @@
+
+
+      <a href="" class="card_agente">
+        {% if agente.foto %}
+          <img src="{{agente.foto.url}}" class="card__image" alt="" />
+        {% else %}
+        <img src="#" class="card__image" alt="" />
+
+        {% endif %}
+        <div class="card_agente__overlay">
+          <div class="card_agente__header">
+            <svg class="card_agente__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+            <div class="card_agente__header-text">
+              <h3 class="card_agente__title">{{agente.nome}} {{agente.sobrenome}}</h3>
+              <span class="card_agente__tagline">{{agente.grupo}}</span>            
+              <span class="card_agente__status">{{agente.get_setor}}</span>
+            </div>
+          </div>
+          <p class="card_agente__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+        </div>
+      </a>
+</ul>

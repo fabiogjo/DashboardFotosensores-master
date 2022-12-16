@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+.venv/
+
+dnit_bi/__pycache__/
+
+venv/Lib/site-packages/

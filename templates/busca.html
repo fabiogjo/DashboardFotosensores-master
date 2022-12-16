@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    {% include 'partials/sidebar.html' %}    
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="main active" xmlns="http://www.w3.org/1999/html">
+
+        {% include 'partials/topbar.html' %}
+
+        <div style="margin-top: 200px"></div>
+
+        <!-- CARDS PARALISADOS -->
+       
+        <h1 align="center" data-toggle="collapse" href="#paralisados" style="cursor: pointer;">Busca</h1>
+
+        <hr width="90%" style="margin:auto; margin-bottom: 20px;">
+        
+        <div class="animate__animated animate__fadeInUp collapse show" id="paralisados">
+
+            <div class="EmAcao cards_equipamentos_tickets animate__animated animate__fadeInUp collapse show" id="EmAcao">
+
+                        {% for equipamento in equipamentos %}
+
+                            {% include 'partials/card.html' %}  
+                        
+                        {% endfor %}
+
+                    
+            </div>
+
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+
+            
+
+    </div>
+
+    {% include 'partials/modal_altera_situacao_paralisado.html' %}
+    {% include 'partials/modal_cria_ticket.html' %}   
+    {% include 'partials/modal_notificacoes.html' %}    
+
+{% endblock %}

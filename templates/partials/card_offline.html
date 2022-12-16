@@ -1,0 +1,50 @@
+{% load static %}
+<div id="{{equipamento.numero_de_serie}}" class="card box-shadow-yellow {{equipamento.numero_de_serie}} {{equipamento.municipio|cut:' '}} {{equipamento.codigo}}" style="width: 16rem;">
+    <div class="status_equipamento">
+
+        <span class="badge badge-warning">Offline</span>
+
+    </div>
+    <div class="tempo_offline" style="position:absolute; padding: 5px;">
+      {% for offline in equipamento.get_offline %}
+              <span class="badge badge-warning" style="position:absolute">{{offline.offline_desde|timesince}}</span><br>
+              {%endfor%}
+          </div>
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+    
+            {% for foto in equipamento.fotos %}
+              <div class="carousel-item">
+                <img class="d-block w-100" src="{% static 'equips/' %}{{foto}}" alt="ImagemEquipamento">
+              </div>
+            {% endfor %}
+    
+            </div>
+          </div>
+  <div class="card-body">
+    <h5 class="card-title">{{equipamento.numero_de_serie}} - {{equipamento.municipio}}</h5>
+    <h6 style="text-align:center;">Tickets</h5>    
+    {% for ticket in equipamento.get_tickets %}
+    <div class="box_ticket {{ticket}}" >
+      {% if ticket.status == "Aberto" %}
+        <span class="dot" style="background: limegreen; box-shadow: 0 0 5px green;"></span>
+      {% elif ticket.status == "Pendente" %}
+        <span class="dot" style="background: yellow; box-shadow: 0 0 5px yellow;"></span>
+      {% endif%}
+      <p class="card-text" style="color: white">{{ ticket }} - {{ticket.tipo}}</p>                              
+    </div>
+    <div class="hideTicket {{ticket}}">
+      <b style="font-weight: bold;">{{ticket.assunto|upper}}</b>
+      <hr width="90%" style="margin:auto; margin-bottom: 20px;">
+            <div class="spacer"></div>
+            <div>
+              <text class="lastReplyUser_{{ticket}}"></text>
+              <div class="spacer"></div>
+              <text id="{{ticket.id}}" class="lastReply_{{ticket}}"></text>
+              <div class="spacer"></div>
+            </div>
+          </div>
+        {% endfor %}
+  </div>
+<a href="{% url 'detalhar_equipamento' equipamento.id %}" class="btn btn-primary">Ir para equipamento</a>
+</div>

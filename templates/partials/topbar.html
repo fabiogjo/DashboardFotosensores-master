@@ -1,0 +1,82 @@
+{% load static %}
+
+<!-- main -->
+<div class="row"  style="background: #f5f7f9; margin: 0; box-shadow: 0 0 1em var(--blue); width: 100%; position: fixed; z-index: 1;">
+    <div class="col-md-8 col-sm-8 clearfix">
+
+        <!-- <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div> -->  
+
+
+     <!-- userImg -->
+     <ul class="user-info pull-left pull-none-xsm" style="list-style-type: none;">
+
+        <!-- Profile Info -->
+        <li class="profile-info dropdown pull-right" style="
+margin-top: 0;
+"><!-- add class "pull-right" if you want to place this from right -->
+
+            <a href="{% url 'profile' %}">
+
+                {% if user.foto %}
+
+                <img src="{{user.foto.url}}" alt="" class="user_img" width="44px !important" height="44px !important">
+
+                {% else %}
+
+                <img src="{% static 'user.png' %}" alt="" class="user_img" width="44px !important" height="44px !important">
+
+                {% endif %}
+
+                {{user.nome}} {{user.sobrenome}}
+
+                
+
+
+            </a>
+
+        </li>
+
+    </ul>
+
+            
+
+
+            <div class="infos">
+                <ul>
+                    <li><a href="/paralisados"><button class="bn632-hover bn28" id="infos_agente">Paralisados <br>{{numero_de_paralisados}}</button></a></li>
+                    <li><a href="/offlines"><button class="bn632-hover bn25" id="infos_agente">Offlines <br>{{numero_de_offlines}}</button></a></li>
+                    <li><a href="/tickets_freshdesk"><button class="bn632-hover bn18" id="infos_agente">Tickets <br>{{numero_de_tickets}}</button></a></li>
+                </ul>
+
+            </div>
+
+
+
+    </div>
+
+    <div class="col-md-4 col-sm-8 clearfix" style="display: flex;">
+
+        <div style="display: flex;">
+            <a href="#" id="button_notificacoes" data-toggle="modal" data-target="#notificacoes" style="margin-top: 30px; width: 70px;  height: 70px;"><ion-icon name="notifications-circle-sharp" style="width: 70%; height: 70%;  color: black"></ion-icon></a>
+
+            <a href="{% url 'cria_ticket' %}" data-toggle="modal" data-target="#form_cria_ticket" style="margin-top: 30px; width: 70px; height: 70px;"><ion-icon name="add-circle-sharp" style="width: 70%; height: 70%; color: black"></ion-icon></a>
+        
+        </div>
+
+        <form id="filtros" action="/busca">
+            <i class="fa fa-search" aria-hidden="true"></i><input type="text" name="buscaGeral" placeholder="Pesquisar..">
+            <input type="submit" value="Enviar">
+            <a href="/tickets_freshdesk">Limpar Filtros</a>
+        </form>
+
+    </div>
+
+</div>
+   
+
+{% include 'partials/modal_cria_ticket.html' %}  
+        
+{% include 'partials/modal_notificacoes.html' %} 
+           

@@ -1,0 +1,27 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    {% include 'partials/sidebar.html' %}    
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="main active" xmlns="http://www.w3.org/1999/html">
+
+        {% include 'partials/topbar.html' %}
+
+        <div class="cards_agentes">
+            
+            {% for agente in agentes %}
+
+                {% include 'usuarios/partials/cards_agentes.html' %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

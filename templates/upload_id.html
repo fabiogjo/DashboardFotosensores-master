@@ -1,0 +1,17 @@
+<form action="{% url 'upload_id' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+    <label>Lote 02</label>
+    <input type="file" name="uploadedFile">
+
+    <br>
+
+    <label>Lote 03</label>
+    <input type="file" name="uploadedFile">
+
+    <br>
+
+    <label>Lote 13</label>
+    <input type="file" name="uploadedFile">
+
+    <button type="submit" class="btn btn-primary">SALVAR</button>
+</form>

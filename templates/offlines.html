@@ -1,0 +1,46 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'partials/navbar.html' %}
+
+<div class="main active">
+
+    {% include 'partials/topbar.html' %}
+
+    <div style="margin-top: 200px"></div>
+    <div class="paralisados">
+        <div class="recentOrders">
+            <div class="">
+                <table class="table table-hover" name="tblParalisados">
+                    <thead>
+                        <tr>
+                          <th scope="col">Ticket</th>
+                          <th scope="col">Serial</th>
+                          <th scope="col">Municipio</th>
+                          <th scope="col">Codigo</th>
+                          <th scope="col">Dias offline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if offlines %}
+                            {% for offline in offlines %}
+                                <tr>
+                                    <td>{{offline.ticket}}</td>
+                                    <td>{{offline.equipamento.numero_de_serie}}</td>
+                                    <td>{{offline.equipamento.municipio}}</td>
+                                    <td>{{offline.equipamento.codigo}}</td>
+                                    <td>{{offline.offline_desde|timesince}}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock %}
+
+

@@ -1,0 +1,37 @@
+{% load static %}
+
+<div id="{{equipamento.numero_de_serie}}" style="height: auto !important; width: 19rem; box-shadow: 0 0 2rem" class="card {{equipamento.numero_de_serie}} {{equipamento.municipio|cut:' '}} {{equipamento.codigo}}" style="width: 16rem;">
+    
+    <div class="card-body alignCenter">
+  
+        <h5 class="card-title"><a href="https://servicos.dnit.gov.br/sior/PNCV/ConsultaEstudoTecnicoInstalacao?CodigoIdentificacaoDNIT={{estudo.codigo}}&Bind=true&Page=1&PageSize=10" target="_blank" style="color:black;">{{estudo.codigo}}</a></h5>
+
+        <label>Municipio</label>
+        <p style="font-weight: bold;">{{estudo.municipio}}</p>
+        <hr>
+
+        <label>BR</label>
+        <p style="font-weight: bold;">{{estudo.br}}</p>
+        <hr>
+
+        <label>KM</label>
+        <p style="font-weight: bold;">{{estudo.km}}</p>
+        <hr>
+
+        <label>Situação</label>
+        <p style="font-weight: bold;">{{estudo.situacao}}</p>
+        <hr>
+        
+        <label>Faixas</label>
+        <p style="font-weight: bold;">{{estudo.faixas}}</p>
+        <hr>
+
+        <label>Lote</label>
+        <p style="font-weight: bold;">{{estudo.municipio.lote}}</p>
+        <hr>
+  
+    </div>
+
+    <!-- <a href="#" class="btn btn-primary">Ir para equipamento</a>
+    -->
+</div>

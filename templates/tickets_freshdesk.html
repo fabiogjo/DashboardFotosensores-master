@@ -1,0 +1,173 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    {% include 'partials/sidebar.html' %}    
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="main active" xmlns="http://www.w3.org/1999/html">
+
+        {% include 'partials/topbar.html' %}
+
+        {% for equipamento in equipamentos %}
+
+            {% if forloop.first %}
+
+                <!-- CARDS PARALISADOS -->
+            
+                <h1 align="center" data-toggle="collapse" href="#paralisados" style="cursor: pointer;">Paralisados</h1>
+
+                <hr width="90%" style="margin:auto; margin-bottom: 20px;">
+                
+                <div class="animate__animated animate__fadeInUp collapse show" id="paralisados">
+                
+                <div style="margin:auto; width: fit-content;">
+
+                    <ul class="CategoriaParalisado">
+                        <li onclick="MostraCategoria('EmAcao'); addClass(this, 'hover')">Em ação - {{numero_de_paralisados_em_acao}}</li>
+                        <li onclick="MostraCategoria('PistaDanificada'); addClass(this, 'hover')">Pista Danificada - {{numero_de_paralisados_pista_danificada}}</li>
+                        <li onclick="MostraCategoria('AguardandoAutorizacaoDiretoriaFotosensores'); addClass(this, 'hover')">Aguardando Autorizacao Diretoria Fotosensores - {{numero_de_paralisados_Aguardando_autorização_diretoria_Fotosensores}}</li>
+                        <li onclick="MostraCategoria('AguardandoAfericaoLaudo'); addClass(this, 'hover')">Aguardando Afericao / Laudo - {{numero_de_paralisados_aguardando_afericao}}</li>
+                        <li onclick="MostraCategoria('DesparalisacaoSolicitada'); addClass(this, 'hover')">Desparalisacao Solicitada - {{numero_de_paralisados_desparalisacao_solicitada}}</li>
+                    </ul>
+
+                </div>
+
+                    <div class="EmAcao cards_equipamentos_tickets animate__animated animate__fadeInUp collapse show" id="EmAcao">
+
+            {% endif %}
+
+                            {% if equipamento.get_paralisacao %}
+
+                                {% if equipamento.get_paralisacao_status == 'Em ação' %}
+
+                                    {% include 'partials/card.html' %}  
+
+                                {% endif %} 
+                            
+                            {% endif %}
+
+            
+            {% if forloop.first %}
+
+            </div>
+
+                <div class="PistaDanificada cards_equipamentos_tickets animate__animated animate__fadeInUp collapse" id="PistaDanificada" style="display: none;">
+
+            {% endif %}
+
+                    {% if equipamento.get_paralisacao %}
+
+                        {% if equipamento.get_paralisacao_status == 'Pista danificada' %}
+                            
+                            {% include 'partials/card.html' %}
+
+                        {% endif %} 
+                    
+                    {% endif %}
+            
+            {% if forloop.first %}
+
+                </div>
+
+                <div class="AguardandoAutorizacaoDiretoriaFotosensores cards_equipamentos_tickets animate__animated animate__fadeInUp collapse" id="AguardandoAutorizacaoDiretoriaFotosensores" style="display: none;">
+
+            {% endif %}
+
+                    {% if equipamento.get_paralisacao %}
+
+                        {% if equipamento.get_paralisacao_status == 'Aguardando autorização diretoria Fotosensores' %}
+                            
+                            {% include 'partials/card.html' %}
+
+                        {% endif %} 
+                    
+                    {% endif %}
+            
+            {% if forloop.first %}        
+
+                </div>
+
+                <div class="AguardandoAfericaoLaudo cards_equipamentos_tickets animate__animated animate__fadeInUp collapse" id="AguardandoAfericaoLaudo" style="display: none;">
+
+            {% endif %}
+
+                    {% if equipamento.get_paralisacao %}
+
+                        {% if equipamento.get_paralisacao_status == 'Aguardando Aferição/Laudo' %}
+                            
+                            {% include 'partials/card.html' %}
+
+                        {% endif %} 
+                    
+                    {% endif %}
+
+            {% if forloop.first %}
+
+                </div>
+
+                <div class="DesparalisacaoSolicitada cards_equipamentos_tickets animate__animated animate__fadeInUp collapse" id="DesparalisacaoSolicitada" style="display: none;">
+
+            {% endif %}
+
+
+                    {% if equipamento.get_paralisacao %}
+
+                        {% if equipamento.get_paralisacao_status == 'Desparalisação Solicitada' %}
+                            
+                            {% include 'partials/card.html' %}
+
+                        {% endif %} 
+                    
+                    {% endif %}
+
+            {% if forloop.first %}
+
+                </div>
+
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+
+            {% endif %}
+
+
+        {% endfor %}
+
+        <!-- CARDS FAIXAS A INSTALAR -->
+
+        <h1 align="center" data-toggle="collapse" href="#EmInstalacao" style="cursor: pointer;">Faixas Em Instalação ('Em construção')</h1>
+
+        <hr width="90%" style="margin:auto; margin-bottom: 20px;">
+
+        <div class="cards_equipamentos_tickets animate__animated animate__fadeInUp collapse show" id="EmInstalacao">
+
+            {% for estudo in estudos_tecnicos %}
+
+                {% if estudo.situacao != "Aprovado" and estudo.situacao != "Anulado"  %}
+                      
+                    {% include 'partials/card_em_instalacao.html' %}
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+        {% include 'partials/modal_altera_situacao_paralisado.html' %}
+
+        {% include 'partials/modal_cria_ticket.html' %}  
+        
+        {% include 'partials/modal_notificacoes.html' %} 
+        
+        
+
+
+    </div>
+
+    {% endblock %}

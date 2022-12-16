@@ -1,0 +1,74 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'partials/navbar.html' %}
+
+<div class="main active">
+
+    {% include 'partials/topbar.html' %}
+
+    <div class="graphBox chartId">
+        <div class="box">
+            <canvas id="graph_indice_desempenho"></canvas>
+        </div>
+    </div>
+
+    <div class="graphBox">
+        <div class="box">
+            <div class="tblIds">
+                <div class="recentOrders">
+                    <div class="">
+                        <table class="table table-hover table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed display" name="tblIds" id="tbl_indice_desempenho">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Serial</th>
+                                  <th scope="col">Municipio</th>
+                                  <th scope="col">Codigo</th>
+                                  <th scope="col">Faixa</th>
+                                  <th scope="col">Indice Desempenho</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                    <!-- USING AJAX DATATABLE -->
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+<script>
+
+    const graph_indice_desempenho = document.getElementById('graph_indice_desempenho').getContext('2d');
+
+    window.onload = function(event){
+
+        renderiza_indice_desempenho('{% url "indice_por_tecnico" %}')
+
+    }
+
+
+
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="{% static 'datatable_indice_desempenho.js' %}"></script>
+
+{% endblock %}
+

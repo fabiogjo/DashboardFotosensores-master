@@ -1,0 +1,8 @@
+<form action="{% url 'upload_et' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+    <label>ET</label>
+    <input type="file" name="uploadedFile">
+
+    <button type="submit" class="btn btn-primary">SALVAR</button>
+    
+</form>

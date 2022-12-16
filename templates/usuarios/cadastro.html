@@ -1,0 +1,127 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<!-- Head -->
+
+<head>
+    <title>Login</title>
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta-Tags -->
+    <!-- Index-Page-CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'usuarios/css/login_page_css.css' %}" type="text/css" media="all">
+    <!-- //Custom-Stylesheet-Links -->
+    <!--fonts -->
+    <!-- //fonts -->
+    <link rel="stylesheet" href="{% static 'usuarios/css/font-awesome.min.css' %}" type="text/css" media="all">
+    <!-- //Font-Awesome-File-Links -->
+	
+	<!-- Google fonts -->
+	<link href="//fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800" rel="stylesheet">
+	<!-- Google fonts -->
+
+</head>
+<!-- //Head -->
+<!-- Body -->
+
+<body>
+	{% include 'partials/_alertas.html' %}
+<section class="main">
+	<div class="layer">
+		
+		<div class="content-w3ls">
+			<div class="content-bottom">
+				<form action="{% url 'cadastro' %}" method="POST" enctype="multipart/form-data" id="cadastra_usuario">{% csrf_token %}
+
+					{{ form|crispy }}
+
+					<input type="password" placeholder="Confirme sua senha" name="password2" class="textinput">
+					
+					<div class="modal-footer">
+						<button type="submit" class="bn632-hover bn18">SALVAR</button>
+					</div>
+
+					<!-- <div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input name="nome" id="text1" type="text" value="" placeholder="Nome" required>
+						</div>
+					</div>
+					<div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input name="sobrenome" id="text1" type="text" value="" placeholder="Sobrenome" required>
+						</div>
+					</div>
+					<div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input name="email" id="text1" type="text" value="" placeholder="Email" required>
+						</div>
+					</div>	
+					<div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input name="usuario" id="text1" type="text" value="" placeholder="Usuario" required>
+						</div>
+					</div>
+					<div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input name="chave_freshdesk" id="text1" type="text" value="" placeholder="Chave Freshdesk" required>
+						</div>
+					</div>
+					<div class="field-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input name="password" id="myInput" type="Password" placeholder="Senha">
+						</div>
+					</div>
+					<div class="field-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input name="password2" id="myInput" type="Password" placeholder="Confirme sua senha">
+						</div>
+					</div>
+					<div class="field-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<div class="wthree-field">
+							<input name="foto_upload" id="foto_upload" type="file" accept="image/png, image/jpeg">
+						</div>
+					</div>
+					<div class="wthree-field">
+						<button type="submit" class="btn">Cadastrar</button>
+					</div>
+					<ul class="list-login">
+						<li class="switch-agileits">
+						</li>
+						<li class="clearfix"></li>
+					</ul>
+					<ul class="list-login-bottom">
+						<li class="">
+							<a href="#" class="text-right">Precisa de ajuda?</a>
+						</li>
+						<li class="clearfix"></li>
+					</ul> -->
+				</form>
+			</div>
+		</div>
+    </div>
+</section>
+
+</body>
+<!-- //Body -->
+</html>

@@ -1,0 +1,118 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'partials/navbar.html' %}
+
+<div class="main active">
+
+    {% include 'partials/topbar.html' %}
+
+    <div style="margin-top: 200px"></div>
+
+    <div class="paralisados">
+
+                    <div class="cardHeader">
+                        <h2></h2>
+                        <a href="{% url 'cria_paralisado' %}" data-toggle="modal" data-target="#form_cria_paralisado" class="btn">Adicionar Paralisação</a>
+                    </div>
+
+    <div class="table-responsive custom-table-responsive">
+        <table class="table hover custom-table" name="tblParalisados" id="tbl_paralisados" style="width: 100%;">
+            <thead>
+                <tr>
+                  <th scope="col" hidden disable>id</th>
+                  <th scope="col" onclick="afterText">Lote</th>
+                  <th scope="col">Serial</th>
+                  <th scope="col">Municipio</th>
+                  <th scope="col">Equipamento</th>
+                  <th scope="col">Faixa</th>
+                  <th scope="col">Data de Abertura</th>
+                  <th scope="col">Data de Encerramento</th>
+                  <th scope="col">Motivo</th>
+<!--                  <th scope="col">Dias Paralisados</th>-->
+                  <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <!-- PREENCHIDO POR DATATABLE_PARALISADOS -->
+
+
+            </tbody>
+        </table>
+        </div>
+
+</div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="{% url 'edita_paralisados'%}" method="POST">{% csrf_token %}
+                            <input type="text" id="id" name="id" hidden>
+
+                            {{ form|crispy }}
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">SALVAR</button>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="modal fade" id="form_cria_paralisado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="">Adicionar Paralisação</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="{% url 'cria_paralisado'%}" method="POST">{% csrf_token %}
+
+                            {{ form|crispy }}
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">SALVAR</button>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js"></script>
+<script src="{% static 'datatable_paralisados.js' %}"></script>
+<script>
+    let data_abertura_disabled = document.querySelector('#data_de_abertura');
+        let serial_disabled = document.querySelector('#serial');
+        data_abertura_disabled.disabled = true;
+        serial_disabled.disabled = true;
+
+</script>
+{% endblock %}
+

@@ -1,0 +1,141 @@
+{% load static %}
+
+{% if equipamento.get_paralisacao %}
+
+    <div class="box red">
+
+{% elif equipamento.get_offline %}
+
+    <div class="box orange">
+
+{% elif not equipamento.get_offline and not equipamento.get_paralisacao %}
+
+    <div class="box green">
+
+{% endif %}
+
+        <div class="boxHead">
+
+            {% if equipamento.get_nova_anotacao and equipamento.get_nova_anotacao|slugify|title != user.email|slugify|title %}
+            
+            <div style="    position: relative; width: 40%; margin: auto; text-align: center; margin-top: -20px;">
+                <a href="{% url 'detalhar_equipamento' equipamento.id %}" style="
+                        font-weight: bold;
+                        color: lightseagreen;
+                        text-shadow: 0 0 1em;
+                        background: transparent;
+                        font-size: 19px;
+                        cursor: pointer;
+                    ">Nova Anotação</a></div>
+
+            {% endif %} 
+            
+            <div class="tempo_paralisado" style="float: right;">
+
+                {% for faixa in equipamento.get_faixas %}
+
+
+                    {% if not equipamento.get_offline and not faixa.get_paralisado %}
+
+                        <span class="badge badge-success">P-{{ faixa.sentido }}-{{faixa.numero}}: Operando </span><br>
+
+                    {% endif %}
+        
+                    {% for paralisado in faixa.get_paralisado %}
+
+                        <span class="badge badge-danger">P-{{ faixa.sentido }}-{{faixa.numero}}: {{ paralisado.data_abertura|timesince }}</span><br>
+                    
+                    {% endfor %}
+                
+                {% endfor %}
+
+                {% if equipamento.get_offline and not equipamento.get_paralisacao %}
+
+                            <span class="badge badge-warning">{{equipamento.get_offline_desde|timesince}}</span><br>
+
+                {% endif %}
+        
+            </div>
+
+            <h2 class="cardTitle"><a href="{% url 'detalhar_equipamento' equipamento.id %}" style="text-decoration: none !important; color: hsl(234, 12%, 34%);">{{equipamento.numero_de_serie}} - {{equipamento.municipio}} - {{equipamento.get_estado}}</a></h2>
+
+            {% if equipamento.get_paralisacao %}
+
+                <button class="paralisadoConfig" data-toggle="modal" data-target="#form_altera_situacao_paralisado" data-equip="{{equipamento.id}}" data-situacao="{{ equipamento.get_paralisacao_status }}">
+            
+                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+            
+                </button>
+
+            {% endif %}
+            
+        </div>
+
+        <p align="center">Tickets</p>
+
+        {% if equipamento.get_tickets %}
+
+            {% for ticket in equipamento.get_tickets|dictsort:"data_criacao" %}
+
+                <p style="text-align:center; margin-bottom: 0px; margin-top: 10px;">{{ticket.data_criacao|timesince}}</p>
+
+                {% if 'vandali' in ticket.get_assunto or 'rompido' in ticket.get_assunto %}
+
+                    <div class="box_ticket {{ticket}} PrioriTicket">
+
+                {% else %} 
+
+                    <div class="box_ticket {{ticket}}">
+
+                {% endif %}
+
+                    {% if ticket.status == "Aberto" %}
+
+                    <span class="dot" style="background: limegreen; box-shadow: 0 0 5px green;"></span>
+
+                    {% elif ticket.status == "Pendente" %}
+
+                    <span class="dot" style="background: yellow; box-shadow: 0 0 5px yellow;"></span>
+
+                    {% endif%}
+
+                    <p class="card-text" style="color: white">{{ ticket }} - {{ticket.tipo}}</p>     
+
+                </div>
+
+                <div class="hideTicket {{ticket}}">
+
+                    <b style="font-weight: bold;">{{ticket.assunto|upper}}</b>
+
+                    <hr width="90%" style="margin:auto; margin-bottom: 20px;">
+
+                    <div class="spacer"></div>
+
+                    <div style="text-align:justify;">
+
+                    <text class="lastReplyUser_{{ticket}}"></text>
+
+                    <div class="spacer"></div>
+
+                    <text id="{{ticket.id}}" class="lastReply_{{ticket}}"></text>
+
+                    <div class="spacer"></div>
+
+                    </div>
+
+                </div>
+
+            {%endfor%}
+        
+        {% else %}
+
+            <div class="spacer"></div>
+            <p>Sem tickets</p>
+
+        {% endif %}
+
+        <div class="spacer"></div>
+
+        
+
+    </div>
