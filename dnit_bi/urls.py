@@ -18,6 +18,7 @@ urlpatterns = [
     path('json_equipamentos', views.json_equipamentos, name='json_equipamentos'),
     path('consulta_agente/<int:id_agente>', views.consulta_agente, name='consulta_agente'),
     path('notificacoes', views.get_notificacoes, name='notificacoes'),
+    path('json_notificacoes', views.json_notificacoes, name='json_notificacoes'),
 
     # INTERFACES
     path('testes', views.testes, name='testes'),

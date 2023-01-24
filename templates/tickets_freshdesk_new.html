@@ -23,13 +23,21 @@
         <div class="animate__animated animate__fadeInUp collapse show" id="paralisados">
         
         <div style="margin:auto; width: fit-content;">
+
         <ul class="CategoriaParalisado">
+
             <li class="hover" onclick="MostraCategoria('EmAcao'); addClass(this, 'hover');">Em ação - {{numero_de_paralisados_em_acao}}</li>
+
             <li onclick="MostraCategoria('PistaDanificada'); addClass(this, 'hover')">Pista Danificada - {{numero_de_paralisados_pista_danificada}}</li>
+
             <li onclick="MostraCategoria('AguardandoAutorizacaoDiretoriaFotosensores'); addClass(this, 'hover')">Aguardando Autorizacao Diretoria Fotosensores - {{numero_de_paralisados_Aguardando_autorização_diretoria_Fotosensores}}</li>
+
             <li onclick="MostraCategoria('AguardandoAfericaoLaudo'); addClass(this, 'hover')">Aguardando Afericao / Laudo - {{numero_de_paralisados_aguardando_afericao}}</li>
+
             <li onclick="MostraCategoria('DesparalisacaoSolicitada'); addClass(this, 'hover')">Desparalisacao Solicitada - {{numero_de_paralisados_desparalisacao_solicitada}}</li>
+
         </ul>
+
     </div>
 
             <div class="EmAcao cards_equipamentos_tickets animate__animated animate__fadeInUp collapse show" id="EmAcao">
@@ -130,12 +138,14 @@
         </div>
         
         <div class="spacer"></div>
-        <div class="spacer"></div>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
-        
 
+        <div class="spacer"></div>
+
+        <div class="spacer"></div>
+
+        <div class="spacer"></div>
+
+        <div class="spacer"></div>
 
         <!-- CARDS OFFLINES -->
 
@@ -168,12 +178,18 @@
         <hr width="90%" style="margin:auto; margin-bottom: 20px;">
 
         <div style="margin:auto; width: fit-content;">
+
             <ul class="CategoriaOperando">
+
                 <li class="hover" onclick="MostraCategoriaOperando('Infra+Task'); addClass(this, 'hover')">Infraestrutura + Tarefas</li>
+
                 <li onclick="MostraCategoriaOperando('Infra'); addClass(this, 'hover')">Infraestrutura</li>
+
             </ul>
+
         </div>
 
+        
 
         <div class="animate__animated animate__fadeInUp collapse show" id="operando">
 
@@ -248,12 +264,6 @@
 
         {% include 'partials/modal_altera_situacao_paralisado.html' %}
 
-        
-        
-        
-
-
     </div>
-
 
 {% endblock %}

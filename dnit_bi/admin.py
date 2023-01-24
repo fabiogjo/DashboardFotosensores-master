@@ -13,7 +13,9 @@ class Ticket_freshdeskAdmin(admin.ModelAdmin):
 
 class ParalisadoAdmin(admin.ModelAdmin):
     list_display = ('faixa', 'municipio', 'data_abertura', 'data_encerramento', 'motivo', "status", "situacao",)
-
+    search_fields = ['data_abertura', 'data_encerramento']
+    list_filter = ('faixa__equipamento__ul','faixa__equipamento__municipio__lote', 'data_abertura','data_encerramento', 'status',)
+    
 class EquipamentoAdmin(admin.ModelAdmin):
     list_display = ('numero_de_serie', 'br', 'km', 'municipio', 'codigo', "tipo_equipamento",)
     search_fields = ['municipio__nome', 'km', 'codigo', 'numero_de_serie']

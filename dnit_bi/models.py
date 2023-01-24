@@ -444,36 +444,35 @@ class Paralisado(models.Model):
 class Ticket_freshdesk(models.Model):
     TIPO_CHOICES = {
 
-        ("Equipamento Offline", "Equipamento Offline"),
-        ("Ajuste Fino", "Ajuste Fino"),
-        ("Ajuste de Imagem", "Ajuste de Imagem"),
-        ("Sem passagem / Não infracionando", "Sem passagem / Não infracionando"),
-        ("Enquadramento", "Enquadramento"),
-        ("Conectorização", "Conectorização"),
-        ("Falha de Camera", "Falha de Camera"),
-        ("Configuração de envio SIOR", "Configuração de envio SIOR"),
-        ("Internet", "Internet"),
-        ("Falha de infração", "Falha de infração"),
-        ("Solicitação de Análise", "Solicitação de Análise"),
-        ("OCR", "OCR"),
-        ("Equipamento sem energia", "Equipamento sem energia"),
-        ("Instalação / Reparo de energia eletrica", "Instalação / Reparo de energia eletrica"),
-        ("Ajuste de Display", "Ajuste de Display"),
-        ("Iluminador", "Iluminador"),
-        ("Poda / Roçada", "Poda / Roçada"),
-        ("Instalação / Reparo de cabo lógico", "Instalação / Reparo de cabo lógico"),
-        ("Implantação / ajuste de sinalização", "Implantação / ajuste de sinalização"),
-        ("infraestrutura", "infraestrutura"),
-        ("Manutenção Preventiva", "Manutenção Preventiva"),
-        ("Manutenção corretiva", "Manutenção corretiva"),
-        ("Implantação/Reparo de sinalização vertical", "Implantação/Reparo de sinalização vertical"),
         ("Aferição", "Aferição"),
+        ("Ajuste de Display", "Ajuste de Display"),
+        ("Ajuste de Imagem", "Ajuste de Imagem"),
+        ("Ajuste Fino", "Ajuste Fino"),
+        ("Conectorização", "Conectorização"),
+        ("Configuração de envio SIOR", "Configuração de envio SIOR"),
+        ("Enquadramento", "Enquadramento"),
+        ("Equipamento Offline", "Equipamento Offline"),
+        ("Equipamento sem energia", "Equipamento sem energia"),
+        ("Falha de Camera", "Falha de Camera"),
         ("Falha de disco", "Falha de disco"),
+        ("Falha de infração", "Falha de infração"),
+        ("Iluminador", "Iluminador"),
+        ("Implantação / ajuste de sinalização", "Implantação / ajuste de sinalização"),
+        ("Implantação/Reparo de sinalização horizontal", "Implantação/Reparo de sinalização horizontal"),
+        ("Implantação/Reparo de sinalização vertical", "Implantação/Reparo de sinalização vertical"),
+        ("infraestrutura", "infraestrutura"),
+        ("Instalação / Reparo de cabo lógico", "Instalação / Reparo de cabo lógico"),
+        ("Instalação / Reparo de energia eletrica", "Instalação / Reparo de energia eletrica"),
+        ("Internet", "Internet"),
+        ("Manutenção corretiva", "Manutenção corretiva"),
+        ("Manutenção Preventiva", "Manutenção Preventiva"),
+        ("OCR", "OCR"),
         ("Outro", "Outro"),
         ("PISTA DANIFICADA SEM CONDIÇÕES PRA REFAZER LAÇOS", "PISTA DANIFICADA SEM CONDIÇÕES PRA REFAZER LAÇOS"),
-        ("Implantação/Reparo de sinalização horizontal", "Implantação/Reparo de sinalização horizontal"),
+        ("Poda / Roçada", "Poda / Roçada"),
+        ("Sem passagem / Não infracionando", "Sem passagem / Não infracionando"),
         ("Service Task", "Service Task"),
-
+        ("Solicitação de Análise", "Solicitação de Análise"),
     }
 
     PRIORIDADE_CHOICES = {
@@ -549,3 +548,13 @@ class Notificacao(models.Model):
     equipamento = models.ForeignKey(Equipamento, on_delete=models.CASCADE, null=True, blank=True)
     acao = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    def get_data(self):
+        
+        return {
+            'usuario': str(f'{self.usuario.nome} {self.usuario.sobrenome}' ),
+            'equipamento': str(self.equipamento),
+            'acao': str(self.acao),
+            'created_at': str(self.created_at),
+
+        }

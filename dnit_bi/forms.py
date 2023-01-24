@@ -29,6 +29,7 @@ class Adicionar_anotacao_ticket(forms.Form):
 class Cria_ticket_form(ModelForm):
     class Meta:
         model = Ticket_freshdesk
+        
         fields = ('equipamento', 'assunto', 'prioridade', 'tipo', 'descricao', )
 
         widgets = {

@@ -838,7 +838,7 @@ def cria_ticket(request):
         
             nome_responsavel = ''
             
-            infraestrutura_tipos = ["Equipamento sem energia", "Equipamento sem energia", "Instalação / Reparo de energia eletrica", "Instalação / Reparo de energia eletrica","Ajuste de Display", "Ajuste de Display","Poda / Roçada", "Poda / Roçada","Instalação / Reparo de cabo lógico", "Instalação / Reparo de cabo lógico","Implantação / ajuste de sinalização", "Implantação / ajuste de sinalização","infraestrutura", "infraestrutura","Implantação/Reparo de sinalização vertical", "Implantação/Reparo de sinalização vertical","PISTA DANIFICADA SEM CONDIÇÕES PRA REFAZER LAÇOS", "PISTA DANIFICADA SEM CONDIÇÕES PRA REFAZER LAÇOS","Implantação/Reparo de sinalização horizontal", "Implantação/Reparo de sinalização horizontal"]
+            infraestrutura_tipos = ["Equipamento sem energia", "Equipamento sem energia", "Instalação / Reparo de energia eletrica", "Instalação / Reparo de energia eletrica","Poda / Roçada", "Poda / Roçada","Instalação / Reparo de cabo lógico", "Instalação / Reparo de cabo lógico","Implantação / ajuste de sinalização", "Implantação / ajuste de sinalização","infraestrutura", "infraestrutura","Implantação/Reparo de sinalização vertical", "Implantação/Reparo de sinalização vertical","PISTA DANIFICADA SEM CONDIÇÕES PRA REFAZER LAÇOS", "PISTA DANIFICADA SEM CONDIÇÕES PRA REFAZER LAÇOS","Implantação/Reparo de sinalização horizontal", "Implantação/Reparo de sinalização horizontal"]
                 
             
             if tickets_freshdesk.tipo in infraestrutura_tipos:
@@ -1080,6 +1080,13 @@ def nova_anotacao_equipamento(request, equipamento_id, user_id):
 def json_indice_desempenho(request):
     indices = Indice_desempenho.objects.all()
     data = [indice.get_data() for indice in indices]
+    response = {'data': data}
+    return JsonResponse(response)
+    
+
+def json_notificacoes(request):
+    notificacoes = Notificacao.objects.all()
+    data = [notificacao.get_data() for notificacao in notificacoes]
     response = {'data': data}
     return JsonResponse(response)
 
