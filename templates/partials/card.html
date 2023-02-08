@@ -57,13 +57,13 @@
         
             </div>
 
-            <h2 class="cardTitle"><a href="{% url 'detalhar_equipamento' equipamento.id %}" style="text-decoration: none !important; color: hsl(234, 12%, 34%);">{{equipamento.numero_de_serie}} - {{equipamento.municipio}} - {{equipamento.get_estado}}</a></h2>
+            <h2 class="cardTitle"><a href="{% url 'detalhar_equipamento' equipamento.id %}" style="text-decoration: none !important; color: hsl(234, 12%, 34%);">{{equipamento.numero_de_serie}} - {{equipamento.municipio}} - {{equipamento.get_estado}} - Lote {{equipamento.municipio.lote}}</a></h2>
 
             {% if equipamento.get_paralisacao %}
 
                 <button class="paralisadoConfig" data-toggle="modal" data-target="#form_altera_situacao_paralisado" data-equip="{{equipamento.id}}" data-situacao="{{ equipamento.get_paralisacao_status }}">
             
-                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                    <span class="icon"><ion-icon name="settings-outline" style="width: 35px; height: 35px;"></ion-icon></span>
             
                 </button>
 

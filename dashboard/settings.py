@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'dnit_bi',
     'usuarios',
     'corsheaders',
+    'relatorios',
 
     # PLUGINS
     'crispy_forms',

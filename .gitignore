@@ -1,5 +1,6 @@
 # Default ignored files
 /shelf/
+
 /workspace.xml
 
 .venv/
@@ -13,3 +14,5 @@ dnit_bi/migrations/__pycache__/
 __pycache__/
 
 ckeditor/
+
+/static/equips

@@ -519,7 +519,9 @@ def upload_paralisados(request):
                         
                     paralisado.save()
                     
-                    print(f'Fechada paralisação {paralisado}')
+                    nova_notificacao = Notificacao(equipamento=equipamento, acao=f'Fechada paralisação para o equipamento ')
+            
+                    nova_notificacao.save()
                     
                     continue
                 
@@ -534,7 +536,9 @@ def upload_paralisados(request):
                     
                     novo_paralisado.save()
                     
-                    print(f'Aberta paralisação {novo_paralisado}')
+                    nova_notificacao = Notificacao(equipamento=equipamento, acao=f'Paralisação aberta para o equipamento ')
+            
+                    nova_notificacao.save()
                     
                     continue
             
@@ -1092,7 +1096,7 @@ def json_notificacoes(request):
 
 
 def json_paralisados(request):
-    paralisados = Paralisado.objects.all().exclude(status='Deferida (Encerramento)')
+    paralisados = Paralisado.objects.exclude(status="Deferida (Encerramento)")
     data = [paralisado.get_data() for paralisado in paralisados]
     response = {'data': data}
     return JsonResponse(response)

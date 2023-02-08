@@ -5,7 +5,6 @@
                 buttons:['copy', 'csv', 'excel', 'pdf', 'print'],
                 ajax: '/json_paralisados',
                 "columns":[
-                    {"data":"id", },
                     {"data": "lote"},
                     {"data": "serial"},
                     {"data": "municipio"},
@@ -14,6 +13,7 @@
                     {"data": "data_abertura"},
                     {"data": "data_encerramento"},
                     {"data": "motivo"},
+                    {"data": "situacao"},
                     {"data":null,
 
                     render:function(data, type, row)

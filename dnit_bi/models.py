@@ -434,6 +434,7 @@ class Paralisado(models.Model):
             'data_abertura': str(self.data_abertura),
             'data_encerramento': str(self.data_encerramento) if self.data_encerramento != None else '',
             'motivo': str(self.motivo),
+            'situacao': str(self.situacao),
             'status': str(self.status)
             
             
@@ -527,6 +528,34 @@ class Ticket_freshdesk(models.Model):
     def get_assunto(self):
         
         return self.assunto
+    
+    def get_grupo(self):
+        if self.agente == 'Adilson Rodrigues':
+            
+            grupo = 'Infraestrutura'
+        
+        elif self.agente == 'Monitoramento Operacional':
+            grupo = 'Monitoramento Operacional'
+            
+        else:
+            grupo = 'Técnicos'
+            
+        return grupo
+    
+    def get_data(self):
+        return {
+            'id': str(self.id_ticket),
+            'assunto': str(self.assunto).upper(),
+            'data_criacao': str(self.data_criacao),
+            'prioridade': str(self.prioridade),
+            'tipo': str(self.tipo),
+            'dias_aberto': str(self.dias_aberto),
+            'agente': str(self.agente),
+            'status': str(self.status),
+            'grupo': str(self.get_grupo()),
+            'paralisado': str(self.equipamento.get_paralisacao())
+
+        }
 
 
 class Offline(models.Model):

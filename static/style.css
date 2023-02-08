@@ -3,7 +3,7 @@
 {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -sizing: border-;
     font-family: 'Ubuntu', sans-serif;
 }
 html {
@@ -25,13 +25,15 @@ html {
  --red: hsl(0, 78%, 62%);
 --cyan: hsl(180, 62%, 55%);
     --orange: hsl(34, 97%, 64%);
-    --blue: hsl(212, 86%, 64%);
     --varyDarkBlue: hsl(234, 12%, 34%);
     --grayishBlue: hsl(229, 6%, 66%);
     --veryLightGray: hsl(0, 0%, 98%);
     --weight1: 200;
     --weight2: 400;
     --weight3: 600;
+
+    --surface-color: #fff;
+    --curve: 40;
 
 }
 
@@ -44,9 +46,10 @@ body
     background-repeat: repeat-y;
     background-size: cover; */
     width: 100%;
-    zoom: 0.7;
-    background-color: var(--veryLightGray);
+    zoom: 0.6;
+    background-color: #ebeff3;
 }
+
 
 /* CARD CONFIG */
 
@@ -55,16 +58,28 @@ body
 
 }
 
-.box img {
-    float: right;
-    width: 64px !important;
+.boxHead{
+
+min-height: 70px;
+
+}
+
+.box_ticket p{
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #00797a !important;
+    font-weight: bold
+
 }
 
 .box {
-    border-radius: 5px;
-    box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+    border-radius: 25px;
+    box-shadow: 0px 50px 40px -20px var(--grayishBlue);
     padding: 30px;
-    margin: 20px;  
+    margin: 20px;
+    background-color: #ffffff;
 }
 
 .cyan {
@@ -80,6 +95,9 @@ body
     border-top: 3px solid var(--orange);
 }
 
+.green {
+    border-top: 3px solid limegreen;
+}
 .cardTitle {
     color: var(--varyDarkBlue);
     font-weight: var(--weight3);
@@ -386,6 +404,19 @@ body
   box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 
+.bn632-hover.bn28 {
+    background-image: linear-gradient(
+      to right,
+      #eb3941,
+      #f15e64,
+      #e14e53,
+      #e2373f
+    );
+    box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
+  }
+
+
+
 footer {
     position: fixed;
     height: 100px;
@@ -418,7 +449,7 @@ footer a .footer-button{
     top: 40%;
     right:5px;
     background-color: #111;
-    overflow-x: hidden;
+    overflow: hidden;
     border-radius: 20px;
     z-index: 9999;
     box-shadow: 0 0 1rem;
@@ -505,8 +536,7 @@ footer a .footer-button{
 {
     width: 100%;
     height: 60px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: inline-flex;
     align-items: center;
     padding: 0 10px;
 }
@@ -600,13 +630,49 @@ footer a .footer-button{
 .user_img{
 
     position: relative;
-    float: right;
-    background: #f8f8ff;
     border-radius: 50px;
-    width: 80px;
-    height: 100%;
+    margin: 30px;
+    width: 60px;
+    height: 60px;
+
 
 }
+
+.profile-info a {
+
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+
+
+.infos ul{
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.infos ul li{
+
+    float: left;
+
+}
+
+.infos ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
 .cardBox
 {
@@ -681,12 +747,54 @@ h1{
 }
 
 .box-equipamento{
-    width:90%;
+    width:100%;
     margin: auto;
     min-height: 110vh;
     text-align:center;
     font-size: 12px;
-    margin-top: 0;
+    margin-top: 200px;
+}
+
+.box-anotacoes{
+
+    width: 25%;
+    height: 90%;
+    position: fixed;
+    right: 0;
+    margin: 50px;
+    margin-top: 200px;
+}
+
+
+
+.body-anotacoes{
+
+    width: 90%;
+    z-index: 9;
+    margin: auto;
+    color: black;
+    padding: 20px;
+    overflow-y: scroll;
+    word-break: break-all;
+    max-height: calc(100% - 150px);
+
+}
+
+.body-anotacoes img{
+
+    width: 15% !important;
+    height: 60px;
+    border-radius: 50%;
+
+}
+
+.body-anotacoes p{
+
+    display: contents;
+    font-size: 15px;
+    font-weight: bold;
+
+
 }
 
 .box-img-top-equipamento{
@@ -700,6 +808,118 @@ h1{
 
 
 }
+
+/* CARDS AGENTES */
+
+.cards_agentes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 4rem 5vw;
+    padding: 0;
+    list-style-type: none;
+    grid-gap: 200px;
+    zoom: 1.3;
+  }
+  
+  .card_agente {
+    position: relative;
+      display: block;
+      height: 400px;
+      border-radius: calc(var(--curve) * 1px);
+      overflow: hidden;
+      text-decoration: none;
+      width: 400px;
+  }
+  
+  .card_agente__image {      
+    width: 100%;
+    height: auto;
+  }
+  
+  .card_agente__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;      
+    background-color: var(--surface-color);      
+    transform: translateY(100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card_agente:hover .card_agente__overlay {
+    transform: translateY(0);
+  }
+  
+  .card_agente__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 2em;
+    border-radius: calc(var(--curve) * 1px) 0 0 0;    
+    background-color: var(--surface-color);
+    transform: translateY(-100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card_agente__arc {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;      
+    z-index: 1;
+  }
+  
+  .card_agente__arc path {
+    fill: var(--surface-color);
+    d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+  }       
+  
+  .card_agente:hover .card__header {
+    transform: translateY(0);
+  }
+  
+  .card_agente__thumb {
+    flex-shrink: 0;
+    width: 50px !important;
+    height: 50px;      
+    border-radius: 50%;      
+  }
+  
+  .card_agente__title {
+    font-size: 1em;
+    margin: 0 0 .3em;
+    color: #6A515E;
+  }
+  
+  .card_agente__tagline {
+    display: block;
+    margin: 1em 0;
+    font-family: "MockFlowFont";  
+    font-size: .8em; 
+    color: #D7BDCA;  
+  }
+  
+  .card_agente__status {
+    font-size: .8em;
+    color: #D7BDCA;
+  }
+  
+  .card_agente__description {
+    padding: 0 2em 2em;
+    margin: 0;
+    color: #D7BDCA;
+    font-family: "MockFlowFont";   
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+  /* END CARDS AGENTES */
 
 
 .IdupdatedAt{
@@ -728,11 +948,17 @@ h1{
 
 .paralisadoConfig{
 
-    position: absolute;
-    width: 100%;
-    height: 150px;
-    z-index: 1;
+    color: var(--cyan);
+    border: none;
+    background: transparent;
 
+
+}
+
+.hydrated{
+
+
+    
 
 }
 
@@ -806,13 +1032,6 @@ h1{
 
 }
 
-.modal-footer{
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-
-
-}
 
 #fade-container {
     position: absolute;
@@ -873,7 +1092,7 @@ h1{
 
 }
 
-img{
+.fr-dib{
 
     width: 100% !important;
 
@@ -883,6 +1102,12 @@ img{
 
     font-weight: bold;
     font-size: 17px;
+
+}
+
+#descricao div img{
+
+    width: 100%;
 
 }
 
@@ -909,6 +1134,12 @@ img{
     background:#efefef;
     left: 0 !important;
     width: 100% !important;
+    background: #efefef;
+    left: 0 !important;
+    width: 100% !important;
+    display: grid;
+    grid-template-columns: 60% 30%;
+    margin-left: 5%;
 
 }
 
@@ -926,22 +1157,40 @@ img{
 
 .box_ticket{
 
-
-    background: darkgray;
-    padding: 0 10px;
+    background: #e0f5f0;
+    border: 1px solid #b4e5d9;
+    color: #00797a;
     border-radius: 20px;
     display: flex;
-    margin-top: 10px;
     cursor: pointer;
+}
+
+.PrioriTicket{
+
+    background: rgb(255,236,240);
+    border: 1px solid rgb(201,40,51) !important;
 
 
 }
+
+
+.PrioriTicket p{
+
+    color: rgb(201,40,51) !important;
+
+}
+
 
 .box_ticket:hover{
 
 
     background: var(--blue);
-    
+
+}
+
+.box_ticket:hover p {
+
+    color: white !important;
 
 
 }
@@ -1038,20 +1287,38 @@ img{
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
+    zoom: 0.9;
 
 }
 
-.card:nth-child(5n) .card-body .hideTicket{
-    right:0;
+#filtros i{
+
+    left: 30px;
+    position: relative;
 
 }
-.card:nth-child(5n-1) .card-body .hideTicket{
 
-    right:0;
+#filtros input[type=text]{
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    padding: 12px 20px 12px 40px;
+}
+
+#filtros{
+
+    float: right;
+    margin-top: 30px;
 
 }
+
+
+.box:nth-child(4n) .hideTicket{
+    right: 60px;
+}
+
 
 .cardBox a
 {
@@ -1115,6 +1382,29 @@ img{
 .cardBox .card:hover .iconBx
 {
     color: var(--white);
+}
+
+
+/* ==== 1. animated seachbox ===== */
+#animated input[type=text] {
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.5s ease-out;
+    transition: width 0.5s ease-out;
+}
+
+#animated input[type=text]:focus {
+    width: 500px;
+}
+
+#animated i {
+  position: relative;
+  left: 30px;
 }
 
 /* CHARTS */
@@ -1315,6 +1605,116 @@ button.dt-button:hover{
     position: relative;
     width: 100%;
     padding: 20px;
+
+}
+
+.CategoriaParalisado{
+
+    white-space: nowrap;
+    z-index: 1;
+    list-style: none;
+    display: inline-block;
+    padding: 20px;
+    margin: 0;
+    margin-top: 7px;
+    font-size: 20px;
+
+
+}
+
+.CategoriaParalisado li {
+
+    float: left;
+    background-image: linear-gradient(
+        to right,
+        #29323c,
+        #485563,
+        #2b5876,
+        #4e4376
+      );
+    color: white;
+    margin: 30px;
+    height: 50px;
+    border-radius: 50px;
+    padding: 10px 25px 10px 25px;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.CategoriaParalisado li:hover {
+
+    background: white;
+    color: black;
+    font-weight: bold;
+    border: 1px solid;
+    box-shadow: 0 0 1em;
+
+}
+
+.CategoriaParalisado .hover{
+
+    background: white;
+    color: black;
+    font-weight: bold;
+    border: 1px solid;
+    box-shadow: 0 0 1em;
+
+}
+
+/*categoria operando */ 
+
+.CategoriaOperando{
+
+    white-space: nowrap;
+    z-index: 1;
+    list-style: none;
+    display: inline-block;
+    padding: 20px;
+    margin: 0;
+    margin-top: 7px;
+    font-size: 20px;
+
+
+}
+
+.CategoriaOperando li {
+
+    float: left;
+    background-image: linear-gradient(
+        to right,
+        #29323c,
+        #485563,
+        #2b5876,
+        #4e4376
+      );
+    color: white;
+    margin: 30px;
+    height: 50px;
+    border-radius: 50px;
+    padding: 10px 25px 10px 25px;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.CategoriaOperando li:hover {
+
+    background: white;
+    color: black;
+    font-weight: bold;
+    border: 1px solid;
+    box-shadow: 0 0 1em;
+
+}
+
+.CategoriaOperando .hover{
+
+    background: white;
+    color: black;
+    font-weight: bold;
+    border: 1px solid;
+    box-shadow: 0 0 1em;
 
 }
 
@@ -1538,6 +1938,84 @@ button.dt-button:hover{
 }
 
 /* responsive design */
+
+@media (max-width: 1920px)
+{
+    .tela_equipamento{
+
+        zoom: 1.4;
+
+    }
+
+
+}
+
+@media (max-width: 1600px)
+{
+
+
+}
+
+
+@media (max-width: 1440px)
+{
+    .tela_equipamento{
+
+        zoom: 1;
+
+    }
+
+}
+
+@media (max-width: 1366px)
+{
+    .tela_equipamento{
+
+        zoom: 1;
+
+    }
+
+
+
+}
+
+@media (max-width: 1152px)
+{
+
+    .cards_equipamentos_tickets{
+
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    .box:nth-child(3n) .hideTicket{
+        right: 60px;
+    }
+
+}
+
+
+
+@media (max-width: 1024px)
+{
+
+    .cards_equipamentos_tickets{
+
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    .box:nth-child(3n) .hideTicket{
+        right: 60px;
+    }
+
+    .tela_equipamento{
+
+        zoom: 1;
+
+    }
+
+}
 
 @media (max-width: 991px)
 {

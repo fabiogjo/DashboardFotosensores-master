@@ -1,0 +1,30 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="box-equipamento">
+        <h4>Tickets resolvidos no mes</h4>
+        <hr>
+        <div class="table-responsive custom-table-responsive">
+            <table class="table hover custom-table" name="tblSolvedTickets" id="tblSolvedTickets">
+                <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Assunto</th>
+                      <th scope="col">Grupo</th>
+                      <th scope="col">Data de Criação</th>
+                      <th scope="col">Agente</th>
+                      <th scope="col">Paralisado</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js"></script>
+<script src="{% static 'datatable_relatorio.js' %}"></script>
+{% endblock %}

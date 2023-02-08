@@ -15,7 +15,9 @@ def carrega_topbar(request):
 
     numero_de_offlines = Offline.objects.count()
 
-    numero_de_tickets = Ticket_freshdesk.objects.all().count()
+    numero_de_tickets = Ticket_freshdesk.objects.exclude(tipo="Service Task").count()
+    
+    numero_de_tarefas = Ticket_freshdesk.objects.filter(tipo="Service Task").count()
     
     notificacoes = Notificacao.objects.order_by('-created_at')[:10]
     
@@ -41,7 +43,9 @@ def carrega_topbar(request):
         
         'numero_de_paralisados_desparalisacao_solicitada': numero_de_paralisados_desparalisacao_solicitada,
         
-        'notificacoes': notificacoes
+        'notificacoes': notificacoes,
+        
+        'numero_de_tarefas': numero_de_tarefas
         
         
 
